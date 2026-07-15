@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { listTeamMembers, type TeamMember } from "@/lib/cms";
+import { absoluteMediaUrl, listTeamMembers, type TeamMember } from "@/lib/cms";
 
 /**
  * Team — pulled from the Payload TeamMembers collection (D008 — no
@@ -30,7 +30,9 @@ function Initials({ name }: { name: string }) {
 }
 
 function Avatar({ member }: { member: TeamMember }) {
-  const photoUrl = typeof member.photo === "object" && member.photo ? member.photo.url : null;
+  const photoUrl = absoluteMediaUrl(
+    typeof member.photo === "object" && member.photo ? member.photo.url : null,
+  );
   if (!photoUrl) return <Initials name={member.name} />;
   return (
     <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">

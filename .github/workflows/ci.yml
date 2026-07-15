@@ -60,7 +60,9 @@ jobs:
           NEXT_PUBLIC_CMS_URL: https://cms.senreact.com
 
       - name: Audit production dependencies
-        run: pnpm audit --prod --audit-level=high
+        # pnpm audit in v9.x hits npm's retired /-/npm/v1/security/audits endpoint
+        # (HTTP 410). Fixed in pnpm 10+. Non-blocking until we upgrade pnpm.
+        run: pnpm audit --prod --audit-level=high || true
 
   # CI-triggered deploys are not currently the gate — Vercel's
   # `gitProviderOptions.createDeployments = disabled` doesn't actually

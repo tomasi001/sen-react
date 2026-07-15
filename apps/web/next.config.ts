@@ -6,6 +6,15 @@ const config: NextConfig = {
   // i18n routing will be added in a later phase; for now, all routes default to FR.
   typedRoutes: true,
   transpilePackages: ["@sen-react/shared"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cms.senreact.com",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default config;

@@ -40,6 +40,7 @@ export function SiteHeader({ data }: SiteHeaderProps) {
                       href={item.href}
                       external={item.external}
                       className="whitespace-nowrap rounded-full border border-[color:var(--color-border)] bg-white px-2.5 py-1.5 text-sm font-medium text-[color:var(--color-fg)] hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
+                      activeClassName="whitespace-nowrap rounded-full border border-[color:var(--color-accent)] bg-[color:var(--color-accent)] px-2.5 py-1.5 text-sm font-medium text-white"
                     >
                       {item.label}
                     </NavLink>

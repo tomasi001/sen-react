@@ -97,6 +97,7 @@ export function MobileNav({ navItems, children }: MobileNavProps) {
                       href={item.href}
                       external={item.external}
                       className="block rounded-md px-3 py-3 text-base font-medium text-[color:var(--color-fg)] hover:bg-[color:var(--color-border)]/40 hover:text-[color:var(--color-accent)]"
+                      activeClassName="block rounded-md bg-[color:var(--color-accent)]/10 px-3 py-3 text-base font-medium text-[color:var(--color-accent)]"
                     >
                       {item.label}
                     </NavLink>

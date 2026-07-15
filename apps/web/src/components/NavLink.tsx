@@ -19,13 +19,7 @@ interface NavLinkProps {
  * Active matching: exact for "/", prefix for all other paths so that
  * e.g. "/opportunites/123" highlights the "Opportunités" nav item.
  */
-export function NavLink({
-  href,
-  external,
-  className,
-  activeClassName,
-  children,
-}: NavLinkProps) {
+export function NavLink({ href, external, className, activeClassName, children }: NavLinkProps) {
   const pathname = usePathname();
 
   const isAbsolute = /^(https?:|mailto:|tel:)/.test(href);

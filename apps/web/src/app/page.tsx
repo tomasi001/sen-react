@@ -35,15 +35,11 @@ const orgJsonLd = {
   ],
 };
 
-/**
- * Force dynamic rendering — the `DirectoryTeaser` reads live verified
- * profiles from Supabase via the cookie-aware server client, which
- * relies on env vars that aren't available at build time. The rest of
- * the homepage already does network fetches per request, so the cost
- * is negligible and removing the static-prerender attempt avoids the
- * "Supabase env not set" build error.
- */
-export const dynamic = "force-dynamic";
+// ISR: regenerate every 5 min — matches the CMS fetch revalidation window.
+// DirectoryTeaser now uses the service-role client (no cookies) so the
+// page is cache-eligible. Supabase env guard in listDirectoryProfiles
+// returns [] gracefully when env vars are absent (CI build).
+export const revalidate = 300;
 
 /**
  * Homepage shell — Phase 2 step 2 per the roadmap §4.

@@ -1,6 +1,5 @@
 import type { ProfileTypeSlug, SectorSlug } from "@sen-react/shared";
 
-import { createServerSupabase } from "@/lib/supabase/server";
 import { createServiceRoleSupabase } from "@/lib/supabase/service";
 
 /**
@@ -42,7 +41,8 @@ export interface DirectoryFilters {
 export async function listDirectoryProfiles(
   filters: DirectoryFilters = {},
 ): Promise<DirectoryProfile[]> {
-  const sb = await createServerSupabase();
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return [];
+  const sb = createServiceRoleSupabase();
   let query = sb
     .from("directory_profiles")
     .select(
@@ -69,7 +69,8 @@ export async function listDirectoryProfiles(
  * notFound()).
  */
 export async function getDirectoryProfileBySlug(slug: string): Promise<DirectoryProfile | null> {
-  const sb = await createServerSupabase();
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null;
+  const sb = createServiceRoleSupabase();
   const { data, error } = await sb
     .from("directory_profiles")
     .select(
